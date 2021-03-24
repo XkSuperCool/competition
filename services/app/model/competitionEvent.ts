@@ -1,4 +1,4 @@
-import { Application } from '../../typings';
+import { Application } from 'egg';
 
 export interface CompetitionEventItem {
   event_name: string;
@@ -24,7 +24,7 @@ export interface CompetitionEventItem {
 
 const CompetitionEventModel = (app: Application) => {
   const { INTEGER, DATE, STRING, TEXT, BOOLEAN } = app.Sequelize;
-  return app.model.define('competitionEvent', {
+  const CompetitionEvent = app.model.define('competitionEvent', {
     id: {
       type: INTEGER,
       primaryKey: true,
@@ -94,7 +94,12 @@ const CompetitionEventModel = (app: Application) => {
       type: BOOLEAN,
       comment: '是否隐藏赛事',
     },
-  }, { freezeTableName: true });
+  });
+  return class extends CompetitionEvent {
+    // static associate() {
+    //    app.model.CompetitionEvent.belongsTo()
+    // }
+  };
 };
 
 export default CompetitionEventModel;

@@ -16,17 +16,17 @@ export default class competitionEventService extends Service {
         is_hidden: false,
         // todo: 需要过滤已经结束的赛事
       },
-      excludes: [
-        'event_details',
-        'most_person',
-        'team_most_person',
-        'team_least_person',
-        'team_most_count',
-        'event_attachment',
-        'data_structure',
-        'createdAt',
-        'updatedAt',
-      ],
+      // excludes: [
+      //   'event_details',
+      //   'most_person',
+      //   'team_most_person',
+      //   'team_least_person',
+      //   'team_most_count',
+      //   'event_attachment',
+      //   'data_structure',
+      //   'createdAt',
+      //   'updatedAt',
+      // ],
     });
   }
 

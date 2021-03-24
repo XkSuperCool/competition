@@ -1,11 +1,6 @@
 import 'egg';
-import Sequelize from 'sequelize';
+import 'egg-sequelize';
 
 declare module 'egg' {
 
-}
-
-export interface Application {
-  Sequelize: typeof Sequelize;
-  model: any,
 }

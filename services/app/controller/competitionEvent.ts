@@ -29,6 +29,7 @@ export default class CompetitionEventController extends Controller {
   async create() {
     const { ctx } = this;
     try {
+      ctx.status = 201;
       ctx.body = await ctx.service.competitionEvent.create(ctx.request.body);
     } catch {
       ctx.body = false;
