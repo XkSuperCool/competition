@@ -1,7 +1,10 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 
 export default (appInfo: EggAppInfo) => {
-  const config = {} as PowerPartial<EggAppConfig>;
+  const config = {
+    wxAPPID: 'wx173a92ceda4646a1',
+    wxSECRET: 'bb1190bea5de6a25abd961b1666cdb21',
+  } as PowerPartial<EggAppConfig>;
 
   // override config from framework / plugin
   // use for cookie sign key, should change to your own and keep security

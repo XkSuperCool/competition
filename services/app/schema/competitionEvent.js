@@ -38,6 +38,11 @@ module.exports = app => {
       type: INTEGER,
       comment: '最多报名人数',
     },
+    cost: {
+      type: INTEGER,
+      comment: '个人报名费用',
+      default: 0,
+    },
     sponsor_id: {
       type: INTEGER,
       allowNull: false,
@@ -59,6 +64,11 @@ module.exports = app => {
       type: INTEGER,
       comment: '最多团队数量',
     },
+    team_cost: {
+      type: INTEGER,
+      comment: '团队报名费用',
+      default: 0,
+    },
     event_attachment: {
       type: STRING,
       comment: '赛事附件',
@@ -71,5 +81,7 @@ module.exports = app => {
       type: BOOLEAN,
       comment: '是否隐藏赛事',
     },
+    createdAt: DATE,
+    updatedAt: DATE,
   };
 };
