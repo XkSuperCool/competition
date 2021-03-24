@@ -3,9 +3,13 @@
 
 import 'egg';
 import ExportCompetitionEvent from '../../../app/controller/competitionEvent';
+import ExportUser from '../../../app/controller/user';
+import ExportUserEvent from '../../../app/controller/userEvent';
 
 declare module 'egg' {
   interface IController {
     competitionEvent: ExportCompetitionEvent;
+    user: ExportUser;
+    userEvent: ExportUserEvent;
   }
 }

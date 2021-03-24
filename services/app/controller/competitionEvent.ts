@@ -1,37 +1,29 @@
 import { Controller } from 'egg';
+import { SuccessResponse } from '../uitls/ResponseModel';
+import { formatPageParams } from '../uitls';
 
 export default class CompetitionEventController extends Controller {
   async index() {
     const { ctx } = this;
-    try {
-      const res = await ctx.service.competitionEvent.findAll();
-      ctx.body = {
-        total: res.count,
-        list: res.rows,
-      };
-    } catch {
-      ctx.body = [];
-    }
+    const { current, pageSize } = formatPageParams(ctx);
+    const res = await ctx.service.competitionEvent.findAll(current, pageSize);
+    ctx.body = new SuccessResponse(res);
   }
 
   async show() {
     const { ctx } = this;
-    if (!ctx.params.id) {
-      ctx.body = '未找到对应结果!';
+    const res = await ctx.service.competitionEvent.findOne(ctx.params.id);
+    if (!res) {
+      ctx.throw(404, '未查询到相关数据');
+      return;
     }
-    try {
-      ctx.body = await ctx.service.competitionEvent.findOne(ctx.params.id) ?? {};
-    } catch {
-      ctx.body = '未找到对应结果!';
-    }
+    ctx.body = new SuccessResponse(res);
   }
 
   async create() {
     const { ctx } = this;
-    try {
-      ctx.body = await ctx.service.competitionEvent.create(ctx.request.body);
-    } catch {
-      ctx.body = false;
-    }
+    ctx.status = 201;
+    const res = await ctx.service.competitionEvent.create(ctx.request.body);
+    ctx.body = new SuccessResponse(res);
   }
 }

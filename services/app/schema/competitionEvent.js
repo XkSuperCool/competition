@@ -1,30 +1,7 @@
-import { Application } from '../../typings';
-
-export interface CompetitionEventItem {
-  event_name: string;
-  event_banners?: string;
-  event_describe?: string;
-  event_details?: string;
-  start_register_time: string,
-  end_register_time: string;
-  start_time: string;
-  end_time: string;
-  most_person?: number;
-  sponsor_id: number;
-  event_type: 0 | 1 | 2;
-  team_most_person?: number;
-  team_least_person?: number;
-  team_most_count?: number;
-  event_attachment?: string;
-  data_structure?: string;
-  is_hidden?: boolean,
-  created_at?: string,
-  updated_at?: string,
-}
-
-const CompetitionEventModel = (app: Application) => {
+module.exports = app => {
   const { INTEGER, DATE, STRING, TEXT, BOOLEAN } = app.Sequelize;
-  return app.model.define('competitionEvent', {
+
+  return {
     id: {
       type: INTEGER,
       primaryKey: true,
@@ -61,6 +38,11 @@ const CompetitionEventModel = (app: Application) => {
       type: INTEGER,
       comment: '最多报名人数',
     },
+    cost: {
+      type: INTEGER,
+      comment: '个人报名费用',
+      defaultValue: 0,
+    },
     sponsor_id: {
       type: INTEGER,
       allowNull: false,
@@ -82,6 +64,11 @@ const CompetitionEventModel = (app: Application) => {
       type: INTEGER,
       comment: '最多团队数量',
     },
+    team_cost: {
+      type: INTEGER,
+      comment: '团队报名费用',
+      defaultValue: 0,
+    },
     event_attachment: {
       type: STRING,
       comment: '赛事附件',
@@ -94,7 +81,7 @@ const CompetitionEventModel = (app: Application) => {
       type: BOOLEAN,
       comment: '是否隐藏赛事',
     },
-  }, { freezeTableName: true });
+    createdAt: DATE,
+    updatedAt: DATE,
+  };
 };
-
-export default CompetitionEventModel;
