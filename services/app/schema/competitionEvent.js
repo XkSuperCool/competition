@@ -41,7 +41,7 @@ module.exports = app => {
     cost: {
       type: INTEGER,
       comment: '个人报名费用',
-      default: 0,
+      defaultValue: 0,
     },
     sponsor_id: {
       type: INTEGER,
@@ -67,7 +67,7 @@ module.exports = app => {
     team_cost: {
       type: INTEGER,
       comment: '团队报名费用',
-      default: 0,
+      defaultValue: 0,
     },
     event_attachment: {
       type: STRING,
