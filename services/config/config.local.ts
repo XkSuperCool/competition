@@ -8,7 +8,7 @@ export default () => {
       port: 3306,
       database: 'ki-competition',
       username: 'root',
-      password: 'root',
+      password: 'lk19981123',
       define: {
         freezeTableName: true, // 强制表名称等于模型名称
       },
