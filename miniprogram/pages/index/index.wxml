@@ -6,10 +6,34 @@
     <view class='word'>搜索感兴趣的东西~</view>
   </view>
 </view>
+
 <view class='banner'>
-  <swiper autoplay indicator-dots circular>
+  <swiper autoplay indicator-dots circular indicator-active-color='#55d551'>
     <swiper-item wx:for='{{banners}}' wx:key='id'>
       <image src='{{item.url}}' mode='widthFix' />
     </swiper-item>
   </swiper>
+</view>
+
+<view class='event-list'>
+  <view class='event-list-item' wx:for='{{eventList}}' wx:key='id'>
+    <view class='left'>
+      <image src='http://192.168.137.1:7001/public/bgc.jpg' />
+    </view>
+    <view class='right'>
+      <view class='event-title'>
+        LOL 山东总赛，火热报名中...
+      </view>
+      <view class='event-content'>进行中</view>
+      <view class='event-signup'>
+        <view class='pic'>
+          <text wx:if='{{item.cost !== 0}}'>{{item.cost}}￥</text>
+          <text wx:else>免费</text>
+        </view>
+        <view class='button'>
+          报名
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
