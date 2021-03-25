@@ -1,6 +1,6 @@
 <view class='header'>
-  <view class='localtion'>
-    济南
+  <view class='localtion' bind:tap='handleLocation'>
+    {{location}}
   </view>
   <view class='search'>
     <view class='word'>搜索感兴趣的东西~</view>
