@@ -2,5 +2,5 @@
   "usingComponents": {
     "banner": "/components/banner/banner"
   },
-  "navigationBarTitleText": "首页"
+  "backgroundColor": "#f0f0f0"
 }

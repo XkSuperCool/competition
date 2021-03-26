@@ -1,0 +1,24 @@
+<view>
+  <banner
+    dot='{{false}}'
+    wx:if='{{details.event_banners}}'
+    data='{{formatEvent.fomatBanners(details.event_banners)}}'
+  />
+</view>
+
+<view class='content'>
+  <view class='title'>
+    <view class='event-name'>
+      {{details.event_name}}
+    </view>
+  </view>
+  <viwe class='info'>
+    1231
+  </viwe>
+</view>
+
+<view class='test'>
+  <view class='box'>231</view>
+</view>
+
+<wxs src='../../wxs/format-event.wxs' module='formatEvent'></wxs>

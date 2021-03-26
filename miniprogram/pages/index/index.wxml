@@ -6,10 +6,34 @@
     <view class='word'>搜索感兴趣的东西~</view>
   </view>
 </view>
+
 <view class='banner'>
-  <swiper autoplay indicator-dots circular>
-    <swiper-item wx:for='{{banners}}' wx:key='id'>
-      <image src='{{item.url}}' mode='widthFix' />
-    </swiper-item>
-  </swiper>
+  <banner data='{{banners}}' />
 </view>
+
+<view class='event-list'>
+  <view class='event-list-item' wx:for='{{eventList}}' wx:key='id' bind:tap='enterEventDetails' data-id='{{item.id}}'>
+    <view class='left'>
+      <image src='{{formatEvent.fomatBanners(item.event_banners)[0]}}' />
+    </view>
+    <view class='right'>
+      <view class='event-title'>
+        {{item.event_name}}
+      </view>
+      <view class='event-content'>
+        {{formatEvent.fomatStatus(item)}}
+      </view>
+      <view class='event-signup'>
+        <view class='pic'>
+          <text wx:if='{{item.cost}}'>{{item.cost}}￥</text>
+          <text wx:else>免费</text>
+        </view>
+        <view class='button'>
+          报名
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<wxs src='../../wxs/format-event.wxs' module='formatEvent'></wxs>

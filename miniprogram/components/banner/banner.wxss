@@ -1,0 +1,9 @@
+.banner swiper {
+  height: 370rpx;
+}
+
+.banner image {
+  width: 100%;
+  display: block;
+  height: 370rpx;
+}

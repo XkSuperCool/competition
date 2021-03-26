@@ -1,0 +1,29 @@
+page {
+  background-color: #f0f0f0;
+}
+
+.content {
+  padding: 70rpx 20rpx 30rpx 20rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  position: relative;
+}
+
+.content .title {
+  width: 95%;
+  left: 50%;
+  position: absolute;
+  border-radius: 8rpx;
+  background-color: #fff;
+  transform: translate(-50%, -105%);
+  padding: 30rpx;
+  box-sizing: border-box;
+  box-shadow: 0 6rpx 6rpx rgba(189, 188, 188, 0.2);
+}
+
+.content .title .event-name {
+  font-size: 35rpx;
+}
+
+.content .info {
+}

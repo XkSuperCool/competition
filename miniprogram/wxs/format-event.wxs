@@ -1,0 +1,32 @@
+/**
+ * 格式化赛事状态
+ * @param info 赛事信息
+ */
+function fomatStatus(info) {
+  var current_time = getDate().getTime();
+  var start_register_time = getDate(info.start_register_time).getTime();
+  var end_register_time = getDate(info.end_register_time).getTime();
+  if (current_time < start_register_time) {
+    return '预热中';
+  }
+  if (current_time > start_register_time && current_time < end_register_time) {
+    return '报名中';
+  }
+  if (current_time > end_register_time) {
+    return '报名结束';
+  }
+  return start;
+};
+
+/**
+ * 格式化轮播图
+ * @param banners 
+ */
+function fomatBanners(banners) {
+  return banners.split('|');
+}
+
+module.exports = {
+  fomatStatus: fomatStatus,
+  fomatBanners: fomatBanners,
+};
