@@ -1,4 +1,5 @@
 import { queryEventDetails } from '../../api/event';
+import { addressAnalysis } from '../../api/map';
 import { createSignUp, getSignUpStatus } from '../../api/userEvent';
 
 const app = getApp();
@@ -24,11 +25,29 @@ Page({
     });
   },
 
+  // 初始化数据
   async initData(id) {
     await this.getEventDetails(id);
     if (isLogin) {
       this.getSignUpStatus();
     }
+  },
+
+  // 处理赛事举办位置，跳转到 Map 页面
+  async handlePositioning() {
+    const details = this.data.details;
+    let lat, lng;
+    if (!details.latitude && !details.longitude) {
+      const res = await addressAnalysis(`${details.province} ${details.city} ${details.district} ${details.detailed_location}`);
+      lat = res.result.location.lat;
+      lng = res.result.location.lng;
+    } else {
+      lat = details.latitude;
+      lng = details.longitude;
+    }
+    wx.navigateTo({
+      url: `/pages/map/index?lat=${lat}&lng=${lng}`,
+    });
   },
 
   // 获取报名状态

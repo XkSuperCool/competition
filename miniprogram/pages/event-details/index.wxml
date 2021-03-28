@@ -43,6 +43,13 @@
         {{formatEvent.fomatDate(details.end_time)}}
       </view>
     </view>
+    <view class='item' bind:tap='handlePositioning'>
+      <text class='iconfont iconweizhi'></text>
+      <text class='text'>地理位置:</text>
+      <view class='text'>
+        {{details.province}} {{details.city}} {{details.district}}
+      </view>
+    </view>
     <view class='item'>
       <text class='iconfont iconjinqian'></text>
       <view class='text'>报名费用:</view>

@@ -1,6 +1,6 @@
 import config from '../../config/index';
-import request from '../../utils/request';
 import { queryEventList } from '../../api/event';
+import { inverseAddressAnalysis } from '../../api/map';
 import { isOpenAuthority, launchAuthorize } from '../../utils/util';
 
 let current = 1;
@@ -102,12 +102,7 @@ Page({
     wx.getLocation({
       success: async ({ latitude, longitude }) => {
         try {
-          const res = await request('https://apis.map.qq.com/ws/geocoder/v1/', {
-            params: {
-              location: `${latitude},${longitude}`,
-              key: config.txMapKey,
-            },
-          });
+          const res = await inverseAddressAnalysis(latitude, longitude);
           this.setData({
             location: res.result.address_component.city,
           });

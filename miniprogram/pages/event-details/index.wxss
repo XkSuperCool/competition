@@ -54,7 +54,7 @@ page {
 }
 
 .content .info {
-  transform: translateY(-32%);
+  transform: translateY(-22%);
   padding-left: 20rpx;
   box-sizing: border-box;
 }

@@ -1,0 +1,5 @@
+<map
+  markers='{{markers}}'
+  longitude='{{lng}}'
+  latitude='{{lat}}'
+></map>

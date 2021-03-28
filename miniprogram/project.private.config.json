@@ -15,7 +15,7 @@
         {
           "name": "pages/event-details/index",
           "pathName": "pages/event-details/index",
-          "query": "id=1",
+          "query": "id=2",
           "scene": null
         },
         {
