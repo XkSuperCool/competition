@@ -1,5 +1,6 @@
 import { Application } from 'egg';
 import UserEventSchema from '../schema/userEvent';
+import EventTypeSchema from '../schema/eventType';
 
 export interface UserEventInstance {
   user_id: number;
@@ -9,8 +10,14 @@ export interface UserEventInstance {
 
 const UserEventModel = (app: Application) => {
   const UserEvent = app.model.define('userEvent', UserEventSchema);
+  const EventType = app.model.define('eventType', EventTypeSchema);
 
   return class extends UserEvent {
+    static associate() {
+      app.model.User.belongsToMany(app.model.CompetitionEvent, { through: UserEvent, foreignKey: 'event_id' });
+      app.model.CompetitionEvent.belongsToMany(app.model.User, { through: UserEvent, foreignKey: 'user_id' });
+      EventType.hasMany(UserEvent, { foreignKey: 'event_type' });
+    }
 
     /**
      * 分页，获取用户报名的赛事
@@ -56,6 +63,22 @@ const UserEventModel = (app: Application) => {
         total: count,
         list: rows,
       };
+    }
+
+    /**
+     * 获取一条数据
+     * @param userID 用户 id
+     * @param eventType 赛事类型
+     * @param eventID 赛事 id
+     */
+    static async getOneData(userID: number, eventType: number, eventID: number) {
+      return await UserEvent.findOne({
+        where: {
+          user_id: userID,
+          event_id: eventID,
+          event_type: eventType,
+        },
+      });
     }
 
     /**

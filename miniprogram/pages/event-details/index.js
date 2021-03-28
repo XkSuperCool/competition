@@ -1,5 +1,8 @@
 import { queryEventDetails } from '../../api/event';
-import { createSignUp } from '../../api/userEvent';
+import { createSignUp, getSignUpStatus } from '../../api/userEvent';
+
+const app = getApp();
+let isLogin = app.globalData.isLogin;
 
 Page({
 
@@ -8,16 +11,43 @@ Page({
    */
   data: {
     details: {},
+    isSignUp: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getEventDetails(options.id);
+    this.initData(options.id);
     wx.showShareMenu({
       withShareTicket: true,
     });
+  },
+
+  async initData(id) {
+    await this.getEventDetails(id);
+    if (isLogin) {
+      this.getSignUpStatus();
+    }
+  },
+
+  // 获取报名状态
+  async getSignUpStatus() {
+    try {
+      const details = this.data.details;
+      const { data } = await getSignUpStatus(details.id);
+      if (
+        (details.event_type === 1 && data === 'alone') || // 当前赛事只有个人赛且已报名过
+        (details.event_type === 2 && data === 'team') || // 当前赛事只有团队赛且已报名过
+        (details.event_type === 3 && data === 'all') // 当前赛事既有个人赛又有团队赛，且都报名过
+      ) {
+        this.setData({
+          isSignUp: true,
+        });
+      }
+    } catch {
+      //
+    }
   },
 
   // 获取赛事详情信息
@@ -44,6 +74,15 @@ Page({
 
   // 赛事报名
   async handleSignUp() {
+    // 未登录需要先登录
+    if (!isLogin) {
+      this.userLogin();
+      return;
+    }
+    // 已报名 return
+    if (this.data.isSignUp) {
+      return;
+    }
     const details = this.data.details;
     let eventType = details.event_type;
     // 判断是不是既有个人赛又有团队赛, 用户选择需要报名哪个类型
@@ -68,19 +107,44 @@ Page({
     }
     wx.showModal({
       title: '报名提示',
-      content: `您确定要报名 “${details.event_name}” 吗？`,
+      content: `您确定要报名 “${details.event_name} (${eventType === 1 ? '个人赛' : '团队赛'})” 吗？`,
       success: async (res) => {
         if (res.confirm) {
           // TODO: 如果需要付款则需要弹出付款框
-          const { data } = await createSignUp({
-            user_id: 1,
-            event_id: details.id,
-            event_type: eventType,
-          });
-          console.log(data);
+          try {
+            await createSignUp({
+              user_id: 1,
+              event_id: details.id,
+              event_type: eventType,
+            });
+            // 更新报名状态
+            this.getSignUpStatus();
+            wx.showToast({
+              title: '报名成功',
+              icon: 'success',
+            });
+          } catch {
+            //
+          }
         }
       },
     })
+  },
+
+  // 用户报名
+  userLogin() {
+    wx.showModal({
+      title: '登录提示',
+      content: '您未登录，需要先登录!',
+      success: async ({ confirm }) => {
+        if (confirm) {
+          app.userLogin().then(() => {
+            isLogin = true;
+            this.getSignUpStatus();
+          });
+        }
+      },
+    });
   },
 
   // 用户选择赛事类型
@@ -89,7 +153,7 @@ Page({
       wx.showActionSheet({
         itemList: ['个人赛', '团队赛'],
         success({ tapIndex }) {
-          resolve(tapIndex);
+          resolve(tapIndex + 1);
         },
         fail() {
           resolve();

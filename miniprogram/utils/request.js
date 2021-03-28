@@ -27,16 +27,21 @@ const request = (url, {
   if (method === 'GET' && params) {
     requestURL += generateQueryString(params);
   }
+
+  const header = {
+    ...headers,
+  }
+  const token = wx.getStorageSync('token');
+  if (token) {
+    header.Authorization = `Bearer ${token}`;
+  }
   
   return new Promise((resolve, reject) => {
     wx.request({
       method,
       url: requestURL,
       data: data ?? {},
-      header: {
-        ...headers,
-        'x-csrf-token': 'MRnlMNhpFxvbJm7o5TRuHDwM',
-      },
+      header: header,
       success(response) {
         if (url.startsWith('/api')) {
           if (response.data.code === 200) {

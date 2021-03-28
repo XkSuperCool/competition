@@ -13,21 +13,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const token = wx.getStorageSync('token');
-    if (token) {
-      this.setData({
-        isLogin: true,
-      });
-    }
+    
+  },
+
+  onShow() {
+    this.setData({
+      isLogin: getApp().globalData.isLogin,
+    });
   },
 
   // 用户登录
   async userLogin() {
     try {
       await app.userLogin();
-      this.setData({
-        isLogin: true,
-      });
     } catch {
       //
     }

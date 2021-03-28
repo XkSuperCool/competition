@@ -9,6 +9,9 @@ export default (appInfo: EggAppInfo) => {
         enable: false,
       },
     },
+    jwt: {
+      secret: 'event_$&_ki',
+    },
   } as PowerPartial<EggAppConfig>;
 
   // override config from framework / plugin

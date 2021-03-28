@@ -2,7 +2,7 @@ import { Service } from 'egg';
 import { UserEventInstance } from '../model/UserEvent';
 
 export default class UserEventClass extends Service {
-  create(data: UserEventInstance) {
+  async create(data: UserEventInstance) {
     return this.ctx.model.UserEvent.save(data);
   }
 

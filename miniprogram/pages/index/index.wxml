@@ -30,7 +30,7 @@
           <text wx:else>免费</text>
         </view>
         <view class='button'>
-          报名
+          前往报名
         </view>
       </view>
     </view>

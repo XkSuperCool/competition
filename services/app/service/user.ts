@@ -14,7 +14,7 @@ export default class UserService extends Service {
    * @param code wx.login 返回的 code
    */
   async wxLogin(code: string) {
-    const { ctx } = this;
+    const { ctx, app } = this;
     const { wxAPPID, wxSECRET } = this.config;
     const res = await ctx.curl<WxLoginResponse>(
       `https://api.weixin.qq.com/sns/jscode2session?appid=${wxAPPID}&secret=${wxSECRET}&js_code=${code}&grant_type=authorization_code`,
@@ -22,8 +22,9 @@ export default class UserService extends Service {
         dataType: 'json',
       },
     );
-    const msg = res.data.errmsg;
-    switch (res.data.errcode) {
+    const data = res.data;
+    const msg = data.errmsg;
+    switch (data.errcode) {
       case -1:
         return ctx.throw(msg ?? '系统繁忙，此时请稍候再试');
       case 40029:
@@ -32,7 +33,21 @@ export default class UserService extends Service {
         return ctx.throw(msg ?? '超出频率限制');
       default: break;
     }
-    // todo: 返回 token 并保存登录信息
-    return 'token';
+
+    // 获取用户信息
+    let userInfo = await ctx.model.User.findOnDataByWXOpenID(data.openid);
+    if (!userInfo) {
+      userInfo = await ctx.model.User.save({
+        username: data.openid,
+        password: data.openid,
+        wx_openid: data.openid,
+      });
+    }
+    return app.jwt.sign({
+      session_key: data.session_key,
+      openid: data.openid,
+      id: userInfo.id,
+      username: userInfo.username,
+    }, app.config.jwt.secret);
   }
 }

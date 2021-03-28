@@ -28,7 +28,7 @@
     <view class='item'>
       <text class='iconfont iconshijian2'></text>
       <view class='text'>报名时间:</view>
-      <view class='text'>
+      <view class='text' wx:if='{{details.start_register_time}}'>
         {{formatEvent.fomatDate(details.start_register_time)}}
         -
         {{formatEvent.fomatDate(details.end_register_time)}}
@@ -37,7 +37,7 @@
     <view class='item'>
       <text class='iconfont iconshijian1'></text>
       <view class='text'>开始时间:</view>
-      <view class='text'>
+      <view class='text' wx:if='{{details.start_time}}'>
         {{formatEvent.fomatDate(details.start_time)}}
         -
         {{formatEvent.fomatDate(details.end_time)}}
@@ -99,7 +99,10 @@
     <text class='iconfont iconbiaoqianA01_zixun-88'></text>
     咨询
   </view>
-  <button class='sign-up' hover-class='follow-active' bind:tap='handleSignUp'>我要报名</button>
+  <button class='sign-up' hover-class='follow-active' bind:tap='handleSignUp'>
+    <text wx:if='{{!isSignUp}}'>我要报名</text>
+    <text wx:else>已报名</text>
+  </button>
 </view>
 
 <wxs src='../../wxs/format-event.wxs' module='formatEvent'></wxs>

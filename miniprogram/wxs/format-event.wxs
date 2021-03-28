@@ -7,13 +7,13 @@ function fomatStatus(info) {
   var start_register_time = getDate(info.start_register_time).getTime();
   var end_register_time = getDate(info.end_register_time).getTime();
   if (current_time < start_register_time) {
-    return '预热中';
+    return '报名未开始';
   }
   if (current_time > start_register_time && current_time < end_register_time) {
-    return '报名中';
+    return '可报名';
   }
   if (current_time > end_register_time) {
-    return '报名结束';
+    return '报名已截至';
   }
   return start;
 };

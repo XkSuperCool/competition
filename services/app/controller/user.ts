@@ -9,7 +9,11 @@ export default class UserController extends Controller {
       ctx.body = new ErrorResponse(401, '缺少微信小程序 code');
       return;
     }
-    const res = await this.service.user.wxLogin(code);
-    ctx.body = new SuccessResponse(res);
+    try {
+      const res = await this.service.user.wxLogin(code);
+      ctx.body = new SuccessResponse(res);
+    } catch {
+      ctx.body = new ErrorResponse(4001, '登录失败');
+    }
   }
 }

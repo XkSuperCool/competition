@@ -48,8 +48,15 @@ const CompetitionEventModel = (app: Application) => {
         offset,
         limit,
         where: {
-          is_hidden: false,
-          // todo: 需要过滤已经结束的赛事
+          [app.Sequelize.Op.and]: {
+            is_hidden: false,
+            end_register_time: {
+              [app.Sequelize.Op.gte]: new Date(),
+            },
+            start_register_time: {
+              [app.Sequelize.Op.lte]: new Date(),
+            },
+          },
         },
         attributes: {
           exclude: [

@@ -10,3 +10,17 @@ export const createSignUp = (data) => {
     method: 'POST',
   });
 }
+
+/**
+ * 检查用户是否报名
+ * @param {number} userId 
+ * @param {number} eventId 
+ */
+export const getSignUpStatus = (eventId) => {
+  return request('/api/userEventChecked', {
+    data: {
+      eventId
+    },
+    method: 'POST',
+  });
+}

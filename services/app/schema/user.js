@@ -12,9 +12,10 @@ module.exports = app => {
       unique: true,
     },
     password: {
-      type: STRING(20),
+      type: STRING,
       allowNull: false,
     },
+    wx_openid: STRING,
     nickname: STRING(20),
     real_name: STRING(20),
     phone: INTEGER,

@@ -7,12 +7,7 @@ export default class UserEventController extends Controller {
   async index() {
     const { ctx } = this;
     const { current, pageSize } = formatPageParams(ctx);
-    const userId = ctx.query.userId;
-    if (!userId) {
-      ctx.body = new ErrorResponse(401, '缺少 userId');
-      return;
-    }
-    const res = await ctx.service.userEvent.findUserEvent(+userId, current, pageSize);
+    const res = await ctx.service.userEvent.findUserEvent(ctx.state.user.id, current, pageSize);
     ctx.body = new SuccessResponse(res);
   }
 
@@ -21,7 +16,7 @@ export default class UserEventController extends Controller {
     const service = ctx.service;
     const body = ctx.request.body as UserEventInstance;
     // 判断是否已经报名过
-    const checked = await service.userEvent.checkedUserIsSignUpEvent(body.user_id, body.event_id);
+    const checked = await service.userEvent.checkedUserIsSignUpEvent(ctx.state.user.id, body.event_id);
     if (
       (body.event_type === 1 && checked === 'alone') ||
       (body.event_type === 2 && checked === 'team') ||
@@ -37,12 +32,12 @@ export default class UserEventController extends Controller {
 
   async userEventChecked() {
     const { ctx } = this;
-    const { userId, eventId } = ctx.request.body;
-    if (!userId || !eventId) {
-      ctx.body = new ErrorResponse(401, '缺少 userId 或 eventId');
+    const { eventId } = ctx.request.body;
+    if (!eventId) {
+      ctx.body = new ErrorResponse(401, '缺少 eventId');
       return;
     }
-    const res = await ctx.service.userEvent.checkedUserIsSignUpEvent(userId, eventId);
+    const res = await ctx.service.userEvent.checkedUserIsSignUpEvent(ctx.state.user.id, eventId);
     ctx.body = new SuccessResponse(res);
   }
 }
