@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/event-details/index"
+    "pages/event-details/index",
+    "pages/user/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -9,6 +10,22 @@
     "navigationBarTitleText": "方小鱼",
     "navigationBarTextStyle":"black",
     "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./assets/images/home.png",
+        "selectedIconPath": "./assets/images/home-active.png"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "我",
+        "iconPath": "./assets/images/my.png",
+        "selectedIconPath": "./assets/images/my-active.png"
+      }
+    ]
   },
   "permission": {
     "scope.userLocation": {

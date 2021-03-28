@@ -18,6 +18,9 @@ export default class UserService extends Service {
     const { wxAPPID, wxSECRET } = this.config;
     const res = await ctx.curl<WxLoginResponse>(
       `https://api.weixin.qq.com/sns/jscode2session?appid=${wxAPPID}&secret=${wxSECRET}&js_code=${code}&grant_type=authorization_code`,
+      {
+        dataType: 'json',
+      },
     );
     const msg = res.data.errmsg;
     switch (res.data.errcode) {

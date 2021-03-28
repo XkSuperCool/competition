@@ -4,6 +4,11 @@ export default (appInfo: EggAppInfo) => {
   const config = {
     wxAPPID: 'wx173a92ceda4646a1',
     wxSECRET: 'bb1190bea5de6a25abd961b1666cdb21',
+    security: {
+      csrf: {
+        enable: false,
+      },
+    },
   } as PowerPartial<EggAppConfig>;
 
   // override config from framework / plugin

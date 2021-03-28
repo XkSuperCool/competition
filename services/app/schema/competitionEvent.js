@@ -1,5 +1,5 @@
 module.exports = app => {
-  const { INTEGER, DATE, STRING, TEXT, BOOLEAN } = app.Sequelize;
+  const { INTEGER, DATE, STRING, TEXT, BOOLEAN, FLOAT } = app.Sequelize;
 
   return {
     id: {
@@ -51,6 +51,10 @@ module.exports = app => {
     event_type: {
       type: INTEGER,
       allowNull: false,
+      references: {
+        model: 'eventType',
+        key: 'id',
+      },
     },
     team_most_person: {
       type: INTEGER,
@@ -80,6 +84,34 @@ module.exports = app => {
     is_hidden: {
       type: BOOLEAN,
       comment: '是否隐藏赛事',
+    },
+    province: {
+      type: STRING,
+      allowNull: false,
+      comment: '赛事举办省份',
+    },
+    city: {
+      type: STRING,
+      allowNull: false,
+      comment: '赛事举办城市',
+    },
+    district: {
+      type: STRING,
+      allowNull: false,
+      comment: '赛事举办区县',
+    },
+    detailed_location: {
+      type: STRING,
+      allowNull: false,
+      comment: '赛事举办详细位置',
+    },
+    longitude: {
+      type: FLOAT,
+      comment: '经度',
+    },
+    latitude: {
+      type: FLOAT,
+      comment: '维度',
     },
     createdAt: DATE,
     updatedAt: DATE,

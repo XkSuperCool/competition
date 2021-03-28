@@ -1,29 +1,231 @@
 page {
   background-color: #f0f0f0;
+  padding-bottom: 110rpx;
+}
+
+.banner {
+  height: 370rpx;
 }
 
 .content {
-  padding: 70rpx 20rpx 30rpx 20rpx;
-  box-sizing: border-box;
+  padding: 0 30rpx;
   background-color: #fff;
   position: relative;
+  box-sizing: border-box;
 }
 
 .content .title {
   width: 95%;
   left: 50%;
-  position: absolute;
+  top: 0;
+  position: relative;
   border-radius: 8rpx;
   background-color: #fff;
-  transform: translate(-50%, -105%);
-  padding: 30rpx;
+  transform: translate(-50%, -35%);
+  padding: 30rpx 30rpx 30rpx 30rpx;
   box-sizing: border-box;
-  box-shadow: 0 6rpx 6rpx rgba(189, 188, 188, 0.2);
+  box-shadow: 0px -3rpx 6rpx rgba(189, 188, 188, 0.4);
+}
+
+.content .title .statistics {
+  margin-top: 8rpx;
+  display: flex;
+}
+
+.content .title .statistics view {
+  color: rgb(151, 148, 148);
+  font-size: 12px;
+  margin-right: 15rpx;
+  display: flex;
+  align-items: center;
+}
+
+.content .title .statistics .iconfont {
+  margin-top: 3rpx;
+  margin-right: 3rpx;
 }
 
 .content .title .event-name {
   font-size: 35rpx;
 }
 
+.iconfont {
+  color: rgb(151, 148, 148);
+}
+
 .content .info {
+  transform: translateY(-32%);
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.content .info .item {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.content .info .item .iconfont {
+  color: #b6b6b6;
+  font-size: 26rpx;
+  padding: 0 16rpx;
+  box-sizing: border-box;
+}
+
+.content .info .item .text {
+  font-size: 24rpx;
+  margin-right: 15rpx;
+}
+
+.content .info .text.cost {
+  color: orange;
+  display: flex;
+}
+
+.content .info .text.cost view {
+  margin-right: 20rpx;
+}
+
+.sponsor,
+.datails {
+  font-size: 26rpx;
+  margin-top: 40rpx;
+  background-color: #fff;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.sponsor .top {
+  display: flex;
+}
+
+.sponsor .sponsor-desc image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.sponsor-info  {
+  margin-top: 15rpx;
+}
+
+.sponsor-info .sponsor-hold {
+  font-size: 24rpx;
+  margin-top: 20rpx;
+}
+
+.sponsor .desc {
+  color: #b6b6b6;
+  font-size: 22rpx;
+  margin-top: 10rpx;
+}
+
+.sponsor .operating {
+  margin-top: 15rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sponsor .operating .button {
+  width: 48%;
+  margin: 0;
+  font-size: 24rpx;
+  font-weight: normal;
+  padding: 10rpx 0;
+}
+
+.sponsor .operating .button .iconfont {
+  font-size: 24rpx;
+}
+
+.sponsor .operating .button:first-child .iconfont {
+  color: #fff;
+  margin-right: -7rpx;
+}
+
+.sponsor .operating .button:last-child .iconfont {
+  color: #3ac035;
+}
+
+.sponsor .operating .button:first-child {
+  color: #fff;
+  background-color: #3ac035;
+}
+
+.sponsor .operating .button:last-child {
+  color: #3ac035;
+  background-color: #eeeeee;
+}
+
+.follow-active {
+  background-color: #9fda9d !important;
+}
+
+.contact-active {
+  background-color: #fafafa !important;
+}
+
+.datails {
+  min-height: 400rpx;
+}
+
+.footer-operating {
+  width: 100%;
+  height: calc(110rpx + env(safe-area-inset-bottom));
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border-top: 1rpx solid #e6e6e6;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.footer-operating view,
+.footer-operating .share {
+  flex: 1;
+  font-size: 26rpx;
+  padding: 20rpx 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+.footer-operating .iconfont {
+  font-size: 38rpx;
+  margin-bottom: 10rpx;
+}
+
+.footer-operating .share {
+  width: 100%;
+  height: 100%;
+  font-weight: normal;
+  background-color: #fff;
+}
+
+.footer-operating view:first-child::before {
+  content: '';
+  position: absolute;
+  width: 1rpx;
+  height: 30rpx;
+  right: 0;
+  top: 20rpx;
+  background-color: #e6e6e6;
+}
+
+.footer-operating .sign-up {
+  color: #fff;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  width: 45%;
+  height: 110rpx;
+  line-height: 110rpx;
+  border-radius: 0;
+  background-color: #3ac035;
 }

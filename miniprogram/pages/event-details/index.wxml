@@ -1,4 +1,4 @@
-<view>
+<view class='banner'>
   <banner
     dot='{{false}}'
     wx:if='{{details.event_banners}}'
@@ -8,17 +8,98 @@
 
 <view class='content'>
   <view class='title'>
-    <view class='event-name'>
-      {{details.event_name}}
+    <view class='event-name'>{{details.event_name}}</view>
+    <view class='statistics'>
+      <view>
+        <text class='iconfont iconyanjing'></text>
+        <text>1.1W+</text>
+      </view>
+      <view>
+        <text class='iconfont iconfenxiang'></text>
+        <text>159</text>
+      </view>
+      <view>
+        <text class='iconfont iconshoucang'></text>
+        <text>66</text>
+      </view>
     </view>
   </view>
-  <viwe class='info'>
-    1231
-  </viwe>
+  <view class='info'>
+    <view class='item'>
+      <text class='iconfont iconshijian2'></text>
+      <view class='text'>报名时间:</view>
+      <view class='text'>
+        {{formatEvent.fomatDate(details.start_register_time)}}
+        -
+        {{formatEvent.fomatDate(details.end_register_time)}}
+      </view>
+    </view>
+    <view class='item'>
+      <text class='iconfont iconshijian1'></text>
+      <view class='text'>开始时间:</view>
+      <view class='text'>
+        {{formatEvent.fomatDate(details.start_time)}}
+        -
+        {{formatEvent.fomatDate(details.end_time)}}
+      </view>
+    </view>
+    <view class='item'>
+      <text class='iconfont iconjinqian'></text>
+      <view class='text'>报名费用:</view>
+      <view class='text cost'>
+        <view wx:if='{{(details.event_type === 1 || details.event_type === 3) && details.cost}}'>
+          <text wx:if='{{details.event_type === 3}}'>个人赛: </text>
+          {{details.cost}}￥
+        </view>
+        <view wx:if='{{(details.event_type === 2 || details.event_type === 3) && details.team_cost}}'>
+          <text wx:if='{{details.event_type === 3}}'>团队赛: </text>
+          {{details.team_cost}}￥
+        </view>
+        <view wx:if='{{!details.cost && !details.team_cost}}'>免费</view>
+      </view>
+    </view>
+  </view>
 </view>
 
-<view class='test'>
-  <view class='box'>231</view>
+<view class='sponsor'>
+  <view class='top'>
+    <view class='sponsor-desc'>
+      <image src='https://picsum.photos/20/20?random=4' alt='logo' />
+    </view>
+    <view class='sponsor-info'>
+      <view class='sponsor-name'>天际无人机</view>
+      <view class='sponsor-hold'>3 赛事</view>
+    </view>
+  </view>
+  <view class='desc'>
+    天际无人机每年都会举办赛事..
+  </view>
+  <view class='operating'>
+    <button size='mini' class='button' hover-class='follow-active'>
+      <text class='iconfont iconjiahao'></text>
+      关注
+    </button>
+    <button size='mini' class='button'hover-class='contact-active'>
+      <text class='iconfont icontubiao313'></text>
+      联系Ta
+    </button>
+  </view>
+</view>
+
+<view class='datails'>
+  {{details.event_details}}
+</view>
+
+<view class='footer-operating'>
+  <button class='share' hover-class='none' open-type='share'>
+    <text class='iconfont iconfenxiang'></text>
+    分享
+  </button>
+  <view>
+    <text class='iconfont iconbiaoqianA01_zixun-88'></text>
+    咨询
+  </view>
+  <button class='sign-up' hover-class='follow-active' bind:tap='handleSignUp'>我要报名</button>
 </view>
 
 <wxs src='../../wxs/format-event.wxs' module='formatEvent'></wxs>

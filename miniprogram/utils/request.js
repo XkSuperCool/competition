@@ -1,4 +1,4 @@
-import conffig from '../config/index';
+import config from '../config/index';
 
 /**
  * 生成查询字符串
@@ -18,11 +18,12 @@ const generateQueryString = (params) => {
  * @param {object} options 请求配置
  */
 const request = (url, {
+  data,
   params,
   method = 'GET',
-  data,
+  headers = {},
 } = {}) => {
-  let requestURL = url.startsWith('/api') ? conffig.baseURL + url : url;
+  let requestURL = url.startsWith('/api') ? config.baseURL + url : url;
   if (method === 'GET' && params) {
     requestURL += generateQueryString(params);
   }
@@ -32,11 +33,22 @@ const request = (url, {
       method,
       url: requestURL,
       data: data ?? {},
+      header: {
+        ...headers,
+        'x-csrf-token': 'MRnlMNhpFxvbJm7o5TRuHDwM',
+      },
       success(response) {
-        if (response.data) {
-          resolve(response.data);
+        if (url.startsWith('/api')) {
+          if (response.data.code === 200) {
+            resolve(response.data);
+          } else {
+            wx.showToast({
+              title: response.data.message ?? '出现错误，请稍后再试！',
+              icon: 'none'
+            });
+          }
         } else {
-          resolve(response);
+          resolve(response.data);
         }
       },
       fail(error) {

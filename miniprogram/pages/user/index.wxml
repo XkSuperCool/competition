@@ -1,0 +1,8 @@
+<view class='user-info'>
+  <view class='avatar'>
+    <image src='http://192.168.137.1:7001/public/avatar.png'  wx:if='{{!isLogin}}'/>
+    <open-data type='userAvatarUrl' wx:else></open-data>
+  </view>
+  <view bind:tap='userLogin' wx:if='{{!isLogin}}'>登录</view>
+  <open-data type='userNickName' wx:else></open-data>
+</view>

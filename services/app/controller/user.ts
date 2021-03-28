@@ -1,14 +1,15 @@
 import { Controller } from 'egg';
-import { SuccessResponse } from '../uitls/ResponseModel';
+import { SuccessResponse, ErrorResponse } from '../uitls/ResponseModel';
 
 export default class UserController extends Controller {
   async wxLogin() {
     const { ctx } = this;
-    if (!ctx.params.code) {
-      ctx.throw(404, '缺少微信小程序的 code');
+    const code = ctx.request.body.code;
+    if (!code) {
+      ctx.body = new ErrorResponse(401, '缺少微信小程序 code');
       return;
     }
-    const res = await this.service.user.wxLogin(ctx.params.code);
+    const res = await this.service.user.wxLogin(code);
     ctx.body = new SuccessResponse(res);
   }
 }

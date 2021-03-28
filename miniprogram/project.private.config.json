@@ -1,0 +1,36 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/event-details/index",
+          "pathName": "pages/event-details/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "name": "pages/event-details/index",
+          "pathName": "pages/event-details/index",
+          "query": "id=2",
+          "scene": null
+        },
+        {
+          "name": "pages/user/index",
+          "pathName": "pages/user/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

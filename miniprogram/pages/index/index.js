@@ -1,10 +1,13 @@
 import config from '../../config/index';
 import request from '../../utils/request';
+import { queryEventList } from '../../api/event';
 import { isOpenAuthority, launchAuthorize } from '../../utils/util';
 
 let current = 1;
 let pageSize = 10;
 let total = 0;
+// 是否可以上拉加载更多
+let more = true;
 
 Page({
   data: {
@@ -33,22 +36,23 @@ Page({
   },
 
   // 触底加载更多
-  async onReachBottom() {
+  onReachBottom() {
+    if (!more) {
+      return;
+    }
     if (total !== 0 && total === this.data.eventList.length) {
+      more = false;
       wx.showToast({
         title: '没有更多数据了...',
         icon: 'none',
       });
+      setTimeout(() => {
+        more = true;
+      }, 10000);
       return;
     }
-    wx.showToast({
-      title: '加载中...',
-      icon: 'loading',
-      duration: 10000,
-    });
     current += 1;
-    await this.getEventList();
-    wx.hideToast();
+    this.getEventList();
   },
 
   // 进入赛事详情
@@ -61,18 +65,20 @@ Page({
   // 获取赛事列表
   async getEventList() {
     try {
-      const { data } = await request('/api/competitions', {
-        params: {
-          current: current,
-          pageSize: pageSize,
-        },
+      wx.showToast({
+        title: '加载中...',
+        icon: 'loading',
+        duration: 10000,
       });
+      const { data } = await queryEventList(current, pageSize);
       total = data.total;
       this.setData({
         eventList: [...this.data.eventList, ...data.list],
       });
     } catch (err) {
       //
+    } finally {
+      wx.hideToast();
     }
   },
 
@@ -105,7 +111,7 @@ Page({
           this.setData({
             location: res.result.address_component.city,
           });
-        } catch {
+        } catch (err) {
           this.setData({
             location: '获取定位',
           });

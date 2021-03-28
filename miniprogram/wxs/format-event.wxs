@@ -26,7 +26,20 @@ function fomatBanners(banners) {
   return banners.split('|');
 }
 
+/**
+ * 格式化时间
+ * @param date 时间
+ */
+function fomatDate(date) {
+  var date = getDate(date);
+  var y = date.getFullYear();
+  var m = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth();
+  var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+  return y + '-' + m + '-' + d;
+}
+
 module.exports = {
+  fomatDate: fomatDate,
   fomatStatus: fomatStatus,
   fomatBanners: fomatBanners,
 };

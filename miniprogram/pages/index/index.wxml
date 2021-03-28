@@ -3,6 +3,7 @@
     {{location}}
   </view>
   <view class='search'>
+    <text class='iconfont iconsearch'></text>
     <view class='word'>搜索感兴趣的东西~</view>
   </view>
 </view>

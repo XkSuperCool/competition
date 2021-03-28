@@ -1,6 +1,7 @@
 import { Application } from 'egg';
 import UserEventSchema from '../schema/userEvent';
-import UserSchema from '../schema/User';
+import UserSchema from '../schema/user';
+import EventTypeSchema from '../schema/eventType';
 
 export interface CompetitionEventItem {
   event_name: string;
@@ -13,7 +14,7 @@ export interface CompetitionEventItem {
   end_time: string;
   most_person?: number;
   sponsor_id: number;
-  event_type: 0 | 1 | 2;
+  event_type: number;
   team_most_person?: number;
   team_least_person?: number;
   team_most_count?: number;
@@ -32,6 +33,9 @@ const CompetitionEventModel = (app: Application) => {
   const UserEvent = app.model.define('userEvent', UserEventSchema);
   const User = app.model.define('user', UserSchema);
   CompetitionEvent.belongsToMany(User, { through: UserEvent, foreignKey: 'event_id' });
+  // 一对多关系
+  const EventType = app.model.define('user', EventTypeSchema);
+  EventType.hasMany(CompetitionEvent, { foreignKey: 'event_type' });
 
   return class extends CompetitionEvent {
     /**

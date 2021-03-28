@@ -25,6 +25,10 @@ module.exports = app => {
     event_type: {
       type: INTEGER,
       allowNull: false,
+      references: {
+        model: 'eventType',
+        key: 'id',
+      },
     },
     createdAt: DATE,
     updatedAt: DATE,
