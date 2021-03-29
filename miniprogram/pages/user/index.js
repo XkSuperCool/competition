@@ -9,25 +9,36 @@ Page({
     isLogin: false,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
-  },
-
   onShow() {
     this.setData({
-      isLogin: getApp().globalData.isLogin,
+      isLogin: app.globalData.isLogin,
     });
   },
 
   // 用户登录
   async userLogin() {
-    try {
-      await app.userLogin();
-    } catch {
-      //
+    const isLogin = await app.userLogin();
+    if (isLogin) {
+      this.setData({
+        isLogin: true,
+      });
     }
   },
+
+  // 注销
+  handleLogOut() {
+    wx.showModal({
+      title: '提示',
+      content: '您确定要注销吗？',
+      success: ({ confirm }) => {
+        if (confirm) {
+          wx.removeStorageSync('token');
+          this.setData({
+            isLogin: false,
+          });
+          app.setIsLogin(false);
+        }
+      }
+    });
+  }
 })

@@ -3,7 +3,7 @@ import { addressAnalysis } from '../../api/map';
 import { createSignUp, getSignUpStatus } from '../../api/userEvent';
 
 const app = getApp();
-let isLogin = app.globalData.isLogin;
+let isLogin = false;
 
 Page({
 
@@ -19,6 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    isLogin = app.globalData.isLogin;
     this.initData(options.id);
     wx.showShareMenu({
       withShareTicket: true,

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "event-item": "../../components/event-list-item/index"
+  },
+  "navigationBarTitleText": "赛事列表"
+}

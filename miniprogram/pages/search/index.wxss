@@ -1,0 +1,62 @@
+page {
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+.search {
+  height: 70rpx;
+  border: 1px solid #e6e6e6;
+  position: relative;
+  padding-left: 55rpx;
+  border-radius: 8rpx;
+}
+
+.search input {
+  font-size: 28rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.search .iconfont {
+  position: absolute;
+  left: 15rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.history {
+  color: rgb(138, 138, 138);
+  font-size: 26rpx;
+  margin-top: 40rpx;
+}
+
+.history .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.history .header .iconfont {
+  padding: 5rpx 10rpx;
+}
+
+.history-list {
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.history-list .history-item {
+  font-size: 24rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 6rpx;
+  border: 1px solid rgb(138, 138, 138);
+  margin-right: 15rpx;
+}
+
+.empty {
+  flex: 1;
+  font-size: 24rpx;
+  margin-top: 30rpx;
+  text-align: center;
+}

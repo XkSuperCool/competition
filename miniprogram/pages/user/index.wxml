@@ -6,3 +6,18 @@
   <view bind:tap='userLogin' wx:if='{{!isLogin}}'>登录</view>
   <open-data type='userNickName' wx:else></open-data>
 </view>
+
+<view class='operation'>
+  <view class='operation-item'>
+    <text class='iconfont iconsign'></text>
+    我的报名
+  </view>
+  <view class='operation-item'>
+    <text class='iconfont icontubiao-'></text>
+    我的团队
+  </view>
+</view>
+
+<button class='log-out' type='warn' bind:tap='handleLogOut' wx:if='{{isLogin}}'>
+  注销
+</button>

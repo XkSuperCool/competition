@@ -2,10 +2,10 @@
   <view class='localtion' bind:tap='handleLocation'>
     {{location}}
   </view>
-  <view class='search'>
+  <navigator class='search' url='/pages/search/index'>
     <text class='iconfont iconsearch'></text>
     <view class='word'>搜索感兴趣的东西~</view>
-  </view>
+  </navigator>
 </view>
 
 <view class='banner'>
@@ -13,34 +13,13 @@
 </view>
 
 <view class='tab' bind:tap='handleToggleListType'>
-  <view class='{{listType === 0 ? "tab-active" : ""}}' data-type='0'>全部</view>
-  <view class='{{listType === 1 ? "tab-active" : ""}}' data-type='1'>个人赛</view>
-  <view class='{{listType === 2 ? "tab-active" : ""}}' data-type='2'>团队赛</view>
+  <view class='{{listType === 0 ? "tab-active" : ""}} tab-item' data-type='0'>全部</view>
+  <view class='{{listType === 1 ? "tab-active" : ""}} tab-item' data-type='1'>个人赛</view>
+  <view class='{{listType === 2 ? "tab-active" : ""}} tab-item' data-type='2'>团队赛</view>
 </view>
 
 <view class='event-list'>
-  <view class='event-list-item' wx:for='{{eventList}}' wx:key='id' bind:tap='enterEventDetails' data-id='{{item.id}}'>
-    <view class='left'>
-      <image src='{{formatEvent.fomatBanners(item.event_banners)[0]}}' />
-    </view>
-    <view class='right'>
-      <view class='event-title'>
-        {{item.event_name}}
-      </view>
-      <view class='event-content'>
-        {{formatEvent.fomatStatus(item)}}
-      </view>
-      <view class='event-signup'>
-        <view class='pic'>
-          <text wx:if='{{item.cost}}'>{{item.cost}}￥</text>
-          <text wx:else>免费</text>
-        </view>
-        <view class='button'>
-          前往报名
-        </view>
-      </view>
-    </view>
-  </view>
+  <block wx:for='{{eventList}}' wx:key='id'>
+    <event-item data='{{item}}' />
+  </block>
 </view>
-
-<wxs src='../../wxs/format-event.wxs' module='formatEvent'></wxs>

@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/event-details/index",
     "pages/user/index",
-    "pages/map/index"
+    "pages/map/index",
+    "pages/search/index",
+    "pages/event-list/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

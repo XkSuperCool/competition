@@ -1,0 +1,30 @@
+<view class='search'>
+  <text class='iconfont iconsearch'></text>
+  <input type='text' placeholder='请输入搜索关键字' confirm-type='search' bind:confirm='handleSearch' />
+</view>
+
+<view class='history'>
+  <view class='header'>
+    <view class='history-title'>搜索历史:</view>
+    <text
+      class='iconfont iconqingchu'
+      bind:tap='handleClearHistory'
+      wx:if='{{history.length}}'
+    >
+    </text>
+  </view>
+  <view class='history-list'>
+    <view
+      wx:key='*this'
+      wx:for='{{history}}'
+      class='history-item'
+      bind:tap='handleClickHistoryItem'
+      data-keywords='{{item}}'
+    >
+      {{item}}
+    </view>
+    <view wx:if='{{history.length === 0}}' class='empty'>
+      暂无搜索记录...
+    </view>
+  </view>
+</view>

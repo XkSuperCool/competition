@@ -76,13 +76,6 @@ Page({
     this.getEventList();
   },
 
-  // 进入赛事详情
-  enterEventDetails(res) {
-    wx.navigateTo({
-      url: `../event-details/index?id=${res.currentTarget.dataset.id}`,
-    });
-  },
-
   // 获取赛事列表
   async getEventList() {
     try {

@@ -15,7 +15,6 @@ function fomatStatus(info) {
   if (current_time > end_register_time) {
     return '报名已截至';
   }
-  return start;
 };
 
 /**

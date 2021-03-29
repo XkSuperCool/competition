@@ -1,14 +1,51 @@
+page {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
 .user-info {
   display: flex;
   align-items: center;
   padding: 0 40rpx;
 }
 
-.avatar,
-.avatar image {
+.user-info .avatar,
+.user-info .avatar image {
   width: 130rpx;
   height: 130rpx;
   border-radius: 50%;
-  margin-right: 20rpx;
+  margin-right: 30rpx;
   overflow: hidden;
+}
+
+.operation {
+  margin-top: 200rpx;
+  padding: 0 20rpx;
+}
+
+.operation-item {
+  font-size: 34rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 20rpx;
+  padding-left: 10rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.operation-item .iconfont {
+  color: rgb(151, 148, 148);
+  font-size: 34rpx;
+  margin-right: 20rpx;
+}
+
+.log-out {
+  color: #fff;
+  font-weight: normal;
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
 }

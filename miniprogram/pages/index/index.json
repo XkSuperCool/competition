@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "banner": "/components/banner/banner"
+    "banner": "/components/banner/banner",
+    "event-item": "/components/event-list-item/index"
   },
   "navigationBarTitleText": "首页"
 }
