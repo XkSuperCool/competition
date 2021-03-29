@@ -14,11 +14,23 @@ Component({
     },
   },
 
+  observers: {
+    'data'(value) {
+      const banners = value.map((item, index) => ({
+        url: item.url ?? item,
+        id: item.id ?? index,
+      }));
+      this.setData({
+        banners,
+      });
+    },
+  },
+
   /**
    * 组件的初始数据
    */
   data: {
-
+    banners: [],
   },
 
   /**

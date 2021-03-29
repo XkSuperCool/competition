@@ -28,11 +28,32 @@ Page({
       },
     ],
     eventList: [],
+    listType: 0,
   },
 
   onLoad() {
     this.locationAuth();
     this.getEventList();
+  },
+
+  // 切换 listType
+  handleToggleListType(data) {
+    if (data.target.dataset.type !== void(0)) {
+      this.setData({
+        listType: +data.target.dataset.type,
+      });
+      // 数据重置
+      current = 1;
+      more = true;
+      this.data.eventList = [];
+      // 重新获取数据
+      this.getEventList();
+      // 滚动到底部
+      wx.pageScrollTo({
+        scrollTop: 185,
+        duration: 100,
+      });
+    }
   },
 
   // 触底加载更多
@@ -70,7 +91,11 @@ Page({
         icon: 'loading',
         duration: 10000,
       });
-      const { data } = await queryEventList(current, pageSize);
+      const { data } = await queryEventList({
+        current,
+        pageSize,
+        type: this.data.listType !== 0 ? this.data.listType : null,
+      });
       total = data.total;
       this.setData({
         eventList: [...this.data.eventList, ...data.list],

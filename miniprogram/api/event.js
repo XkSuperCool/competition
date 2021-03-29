@@ -10,14 +10,22 @@ export const queryEventDetails = (id) => {
 
 /**
  * 分页，查询赛事列表
+ * @param {object} options 配置项，具体如下：
  * @param {number} current 当前页
  * @param {number} pageSize 条数
  */
-export const queryEventList = (current, pageSize) => {
+export const queryEventList = ({ current, pageSize, keywords, type }) => {
+  const params = {
+    current,
+    pageSize,
+  }
+  if (keywords) {
+    params.keywords = keywords;
+  }
+  if (type) {
+    params.eventType = type;
+  }
   return request('/api/competitions', {
-    params: {
-      current,
-      pageSize,
-    },
-  })
+    params,
+  });
 }

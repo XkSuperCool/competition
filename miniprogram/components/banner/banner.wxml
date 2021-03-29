@@ -1,8 +1,7 @@
 <view class='banner'>
-  <swiper autoplay indicator-dots='{{dot}}' circular indicator-active-color='#55d551'>
-    <swiper-item wx:for='{{data}}' wx:key='*this'>
-      <image src='{{item.url}}' mode='widthFix' wx:if='{{item.url}}' />
-      <image src='{{item}}' mode='widthFix' wx:else />
+  <swiper autoplay indicator-dots='{{dot}}' circular indicator-active-color='#55d551' class='swiper'>
+    <swiper-item wx:for='{{banners}}' wx:key='id'>
+      <image src='{{item.url}}' mode='widthFix' class='banner-image' />
     </swiper-item>
   </swiper>
 </view>
