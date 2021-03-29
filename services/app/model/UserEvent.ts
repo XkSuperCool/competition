@@ -24,8 +24,15 @@ const UserEventModel = (app: Application) => {
      * @param userID 用户 id
      * @param offset 偏移值
      * @param limit 获取条数
+     * @param keywords 搜索关键字
      */
-    static async queryUserEventById(userID: number, offset: number, limit: number) {
+    static async queryUserEventById(userID: number, offset: number, limit: number, keywords?: string) {
+      const where = {
+        user_id: userID,
+      };
+      if (keywords) {
+        where[app.Sequelize.Op.like] = `%${keywords}%`;
+      }
       const { count, rows } = await UserEvent.findAndCountAll({
         offset,
         limit,
@@ -49,9 +56,7 @@ const UserEventModel = (app: Application) => {
             },
           },
         ],
-        where: {
-          user_id: userID,
-        },
+        where: { ...where },
         attributes: {
           exclude: [
             'createdAt',
@@ -73,6 +78,22 @@ const UserEventModel = (app: Application) => {
      */
     static async getOneData(userID: number, eventType: number, eventID: number) {
       return await UserEvent.findOne({
+        where: {
+          user_id: userID,
+          event_id: eventID,
+          event_type: eventType,
+        },
+      });
+    }
+
+    /**
+     * 删除一条数据
+     * @param userID 用户 id
+     * @param eventType 赛事类型
+     * @param eventID 赛事 id
+     */
+    static async deleteOneData(userID: number, eventType: number, eventID: number) {
+      return await UserEvent.destroy({
         where: {
           user_id: userID,
           event_id: eventID,

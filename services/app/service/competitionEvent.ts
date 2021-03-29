@@ -7,9 +7,9 @@ export default class competitionEventService extends Service {
     return model.CompetitionEvent.save(data);
   }
 
-  findAll(offset = 0, limit = 10) {
+  findAll(offset = 0, limit = 10, keywords?: string) {
     const { model } = this.ctx;
-    return model.CompetitionEvent.query(offset, limit);
+    return model.CompetitionEvent.query(offset, limit, keywords);
   }
 
   findOne(id: number) {

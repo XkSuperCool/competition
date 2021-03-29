@@ -42,20 +42,30 @@ const CompetitionEventModel = (app: Application) => {
      * 获取赛事分页数据
      * @param offset 偏移下标
      * @param limit 获取数量
+     * @param keywords 关键字
      */
-    static async query(offset: number, limit: number) {
+    static async query(offset: number, limit: number, keywords?: string) {
+      const where: {[keys: string]: any} = {
+        is_hidden: false,
+        end_register_time: {
+          [app.Sequelize.Op.gte]: new Date(),
+        },
+        start_register_time: {
+          [app.Sequelize.Op.lte]: new Date(),
+        },
+      };
+      if (keywords) {
+        where.event_name = {
+          [app.Sequelize.Op.like]: `%${keywords}%`,
+        };
+      }
+      console.log(where)
       const { count, rows } = await CompetitionEvent.findAndCountAll({
         offset,
         limit,
         where: {
           [app.Sequelize.Op.and]: {
-            is_hidden: false,
-            end_register_time: {
-              [app.Sequelize.Op.gte]: new Date(),
-            },
-            start_register_time: {
-              [app.Sequelize.Op.lte]: new Date(),
-            },
+            ...where,
           },
         },
         attributes: {

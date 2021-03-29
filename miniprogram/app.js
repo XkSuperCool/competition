@@ -6,21 +6,6 @@ App({
     if (token) {
       this.globalData.isLogin = true;
     }
-    wx.checkSession({
-      fail() {
-        wx.removeStorage({ key: 'token' });
-        this.globalData.isLogin = false;
-        wx.showModal({
-          title: '登录过期，是否重新登录',
-          icon: 'none',
-          success: async (res) => {
-            if (res.confirm) {
-              await this.userLogin();
-            }
-          },
-        });
-      },
-    });
   },
   globalData: {
     userInfo: null,
@@ -62,6 +47,7 @@ App({
         },
         fail: () => {
           this.globalData.isLogin = false;
+          wx.hideLoading();
           wx.showToast({
             title: '登录失败',
             icon: null,

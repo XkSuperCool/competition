@@ -43,14 +43,14 @@ const isOpenAuthority = name => {
 const launchAuthorize = name => {
   return new Promise((resolve) => {
     wx.authorize({
-      scope: 'scope.userLocation',
+      scope: `scope.${name}`,
       success () {
         resolve(true);
       },
       fail() {
         resolve(false);
       }
-    })
+    });
   });
 }
 

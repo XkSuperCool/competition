@@ -37,8 +37,9 @@ Page({
   async handlePositioning() {
     const details = this.data.details;
     let lat, lng;
+    const address = `${details.province} ${details.city} ${details.district} ${details.detailed_location}`;
     if (!details.latitude && !details.longitude) {
-      const res = await addressAnalysis(`${details.province} ${details.city} ${details.district} ${details.detailed_location}`);
+      const res = await addressAnalysis(address);
       lat = res.result.location.lat;
       lng = res.result.location.lng;
     } else {
@@ -46,7 +47,7 @@ Page({
       lng = details.longitude;
     }
     wx.navigateTo({
-      url: `/pages/map/index?lat=${lat}&lng=${lng}`,
+      url: `/pages/map/index?lat=${lat}&lng=${lng}&address=${address}`,
     });
   },
 
@@ -132,7 +133,6 @@ Page({
           // TODO: 如果需要付款则需要弹出付款框
           try {
             await createSignUp({
-              user_id: 1,
               event_id: details.id,
               event_type: eventType,
             });

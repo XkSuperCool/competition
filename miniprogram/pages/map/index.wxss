@@ -2,3 +2,13 @@ map {
   width: 100vw;
   height: 100vh;
 }
+
+.route-plan {
+  color: #fff;
+  font-weight: normal;
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom) + 2%);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3ac035;
+}

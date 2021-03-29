@@ -25,9 +25,27 @@ export default class UserEventController extends Controller {
       ctx.body = new ErrorResponse(401, '已报名该赛事，不能重复报名！');
       return;
     }
-    const res = await service.userEvent.create(body);
+    const res = await service.userEvent.create({
+      user_id: ctx.state.user.id,
+      event_id: body.event_id,
+      event_type: body.event_type,
+    });
     ctx.status = 201;
     ctx.body = new SuccessResponse(res);
+  }
+
+  async cancelSignUp() {
+    const { ctx } = this;
+    const res = await this.service.userEvent.delete(
+      ctx.state.user.id,
+      +ctx.query.eventType,
+      +ctx.query.eventId,
+    );
+    if (res === 1) {
+      ctx.body = new SuccessResponse('ok');
+    } else {
+      ctx.body = new ErrorResponse(4002, '取消报名失败，请稍后再试！');
+    }
   }
 
   async userEventChecked() {

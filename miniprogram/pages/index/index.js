@@ -92,7 +92,7 @@ Page({
           if (res.authSetting['scope.userLocation']) {
             this.getLocation();
           }
-        }
+        },
       });
     }
   },

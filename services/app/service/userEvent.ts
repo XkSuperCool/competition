@@ -2,13 +2,17 @@ import { Service } from 'egg';
 import { UserEventInstance } from '../model/UserEvent';
 
 export default class UserEventClass extends Service {
-  async create(data: UserEventInstance) {
+  create(data: UserEventInstance) {
     return this.ctx.model.UserEvent.save(data);
   }
 
   findUserEvent(id: number, offset = 1, limit = 10) {
     const { ctx } = this;
     return ctx.model.UserEvent.queryUserEventById(id, offset, limit);
+  }
+
+  async delete(userID: number, eventType: number, eventID: number) {
+    return await this.ctx.model.UserEvent.deleteOneData(userID, eventType, eventID);
   }
 
   async checkedUserIsSignUpEvent(userID: number, eventID: number) {

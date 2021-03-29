@@ -5,7 +5,7 @@ const mapService = 'https://apis.map.qq.com/ws/geocoder/v1/';
 
 /**
  * 地址解析
- * @param {string}} address 地址
+ * @param {string} address 地址
  */
 export const addressAnalysis = (address) => {
   return request(mapService, {
@@ -18,8 +18,8 @@ export const addressAnalysis = (address) => {
 
 /**
  * 逆地址解析
- * @param {number} latitude 
- * @param {number} longitude 
+ * @param {number | string} latitude 纬度
+ * @param {number | string} longitude 经度
  */
 export const inverseAddressAnalysis = (latitude, longitude) => {
   return request(mapService, {

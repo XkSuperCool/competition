@@ -3,3 +3,4 @@
   longitude='{{lng}}'
   latitude='{{lat}}'
 ></map>
+<button class='route-plan' bind:tap='handleRoutePlan'>路径规划</button>
