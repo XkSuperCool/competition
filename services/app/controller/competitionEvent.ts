@@ -6,7 +6,11 @@ export default class CompetitionEventController extends Controller {
   async index() {
     const { ctx } = this;
     const { current, pageSize } = formatPageParams(ctx);
-    const res = await ctx.service.competitionEvent.findAll(current, pageSize, ctx.query.keywords);
+    let type;
+    if (ctx.query.eventType) {
+      type = parseInt(ctx.query.eventType, 10);
+    }
+    const res = await ctx.service.competitionEvent.findAll(current, pageSize, ctx.query.keywords, type);
     ctx.body = new SuccessResponse(res);
   }
 

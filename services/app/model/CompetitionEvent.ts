@@ -43,8 +43,9 @@ const CompetitionEventModel = (app: Application) => {
      * @param offset 偏移下标
      * @param limit 获取数量
      * @param keywords 关键字
+     * @param eventType 赛事类型
      */
-    static async query(offset: number, limit: number, keywords?: string) {
+    static async query(offset: number, limit: number, keywords?: string, eventType?: number) {
       const where: {[keys: string]: any} = {
         is_hidden: false,
         end_register_time: {
@@ -59,7 +60,9 @@ const CompetitionEventModel = (app: Application) => {
           [app.Sequelize.Op.like]: `%${keywords}%`,
         };
       }
-      console.log(where)
+      if (eventType) {
+        where.event_type = eventType;
+      }
       const { count, rows } = await CompetitionEvent.findAndCountAll({
         offset,
         limit,
