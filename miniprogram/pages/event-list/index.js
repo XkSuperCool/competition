@@ -7,7 +7,7 @@ let current = 1,
 Page({
   data: {
     list: [],
-    total: 0,
+    total: -1,
   },
 
   onLoad(option) {

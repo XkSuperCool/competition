@@ -2,6 +2,6 @@
   <event-item data='{{item}}' />
 </block>
 
-<view class='prompt' wx:if='{{total !== 0 && total === list.length}}'>
+<view class='prompt' wx:if='{{total !== -1 && total === list.length}}'>
   没有更多数据了...
 </view>
