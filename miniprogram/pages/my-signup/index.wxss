@@ -1,0 +1,11 @@
+.list-item .button {
+  color: #fa5151 !important;
+  border-color: #fa5151 !important;
+  background-color: #fff8f8 !important;
+}
+
+.list-item .type {
+  color: #3ac035;
+  font-size: 24rpx;
+  margin-top: 15rpx;
+}

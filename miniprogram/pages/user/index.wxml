@@ -7,8 +7,8 @@
   <open-data type='userNickName' wx:else></open-data>
 </view>
 
-<view class='operation'>
-  <view class='operation-item'>
+<view class='operation' bind:tap='jumpPage'>
+  <view class='operation-item' data-url='/pages/my-signup/index'>
     <text class='iconfont iconsign'></text>
     我的报名
   </view>

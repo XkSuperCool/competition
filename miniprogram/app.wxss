@@ -9,3 +9,10 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 }
+
+.empty-prompt {
+  color: rgb(138, 138, 138);
+  font-size: 24rpx;
+  text-align: center;
+  padding: 20rpx 0;
+}

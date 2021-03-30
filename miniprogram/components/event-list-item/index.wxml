@@ -1,6 +1,6 @@
 <view class='event-list-item' bind:tap='handleClickItem'>
     <view class='left'>
-      <image src='{{data.event_banners && formatEvent.fomatBanners(data.event_banners)[0]}}' class='banner' />
+      <image src='{{data.event_banners && formatEvent.fomatBanners(data.event_banners)[0]}}' class='banner-image' />
     </view>
     <view class='right'>
       <view class='event-title'>
@@ -9,13 +9,17 @@
       <view class='event-content'>
         {{formatEvent.fomatStatus(data)}}
       </view>
+      <view class='slot'>
+        <slot></slot>
+      </view>
       <view class='event-signup'>
         <view class='pic'>
           <text wx:if='{{data.cost}}'>{{data.cost}}￥</text>
+          <text wx:elif='{{data.team_cost}}'>{{team_cost}}￥</text>
           <text wx:else>免费</text>
         </view>
-        <view class='button'>
-          前往报名
+        <view class='button' catch:tap='handleClickButton'>
+          {{buttonText}}
         </view>
       </view>
     </view>
