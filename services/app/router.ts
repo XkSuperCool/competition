@@ -6,6 +6,8 @@ export default (app: Application) => {
   router.resources('competitions', '/api/competitions', controller.competitionEvent);
   router.resources('competition', '/api/competitions/:id', controller.competitionEvent);
   router.resources('userEvents', '/api/userEvents', jwt, controller.userEvent);
+  router.resources('teams', '/api/teams', jwt, controller.team);
+  router.resources('team', '/api/teams/:id', jwt, controller.team);
   // @ts-ignore
   router.post('/api/userEventChecked', jwt, controller.userEvent.userEventChecked);
   // @ts-ignore

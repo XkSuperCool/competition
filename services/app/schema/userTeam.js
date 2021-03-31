@@ -14,24 +14,9 @@ module.exports = app => {
         key: 'id',
       },
     },
-    event_id: {
-      type: INTEGER,
-      allowNull: false,
-      references: {
-        model: 'competitionEvent',
-        key: 'id',
-      },
-    },
-    event_type: {
-      type: INTEGER,
-      allowNull: false,
-      references: {
-        model: 'eventType',
-        key: 'id',
-      },
-    },
     team_id: {
       type: INTEGER,
+      allowNull: false,
       references: {
         model: 'team',
         key: 'id',

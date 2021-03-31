@@ -8,6 +8,8 @@ let pageSize = 10;
 let total = 0;
 // 是否可以上拉加载更多
 let more = true;
+// 屏幕的宽度
+let windowWidth = 0;
 
 Page({
   data: {
@@ -34,6 +36,12 @@ Page({
   onLoad() {
     this.locationAuth();
     this.getEventList();
+    wx.getSystemInfo({
+      success: (info) => {
+        // 储存屏幕的宽度
+        windowWidth = info.windowWidth;
+      },
+    });
   },
 
   // 切换 listType
@@ -50,7 +58,7 @@ Page({
       this.getEventList();
       // 滚动到底部
       wx.pageScrollTo({
-        scrollTop: 185,
+        scrollTop: (windowWidth / 750) * 370, // 通过 rpx 计算出 px
         duration: 100,
       });
     }
