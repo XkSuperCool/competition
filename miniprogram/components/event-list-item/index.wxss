@@ -33,7 +33,6 @@
 }
 
 .event-list-item .right .event-content {
-  flex: 1;
   color: #c0bdbd;
   font-size: 24rpx;
   margin: 10rpx 0;
@@ -46,7 +45,11 @@
   flex-direction: column;
 }
 
-.event-list-item .left .banner {
+.slot {
+  flex: 1;
+}
+
+.event-list-item .left .banner-image {
   width: 370rpx;
   height: 220rpx;
   display: block;

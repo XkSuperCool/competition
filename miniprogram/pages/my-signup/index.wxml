@@ -1,0 +1,18 @@
+<block wx:for='{{list}}' wx:key='event_id'>
+  <event-item
+    class='list-item'
+    data='{{item.competitionEvent}}'
+    button-click-jump-page='{{false}}'
+    button-text='取消报名'
+    bind:click='handleCancelSignup'
+  >
+    <view class='type'>
+      {{item.event_type === 1 ? '个人赛' : '团队赛'}}
+    </view>
+  </event-item>
+</block>
+
+<view class='empty-prompt' wx:if='{{total !== -1 && total === list.length}}'>
+  <text wx:if='{{total === 0}}'>空空如也...</text>
+  <text wx:else>没有更多数据了...</text>
+</view>

@@ -84,6 +84,9 @@ const CompetitionEventModel = (app: Application) => {
             'updatedAt',
           ],
         },
+        order: [
+          [ 'id', 'desc' ],
+        ],
       });
       return {
         total: count,

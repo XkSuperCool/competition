@@ -37,8 +37,13 @@
           "scene": null
         },
         {
+<<<<<<< HEAD
           "name": "pages/team/index",
           "pathName": "pages/team/index",
+=======
+          "name": "pages/my-signup/index",
+          "pathName": "pages/my-signup/index",
+>>>>>>> 7b48495b5bdb08f033e272aa09691a99e79c802c
           "scene": null
         }
       ]

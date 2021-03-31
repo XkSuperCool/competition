@@ -38,9 +38,10 @@ export default class UserEventController extends Controller {
     const { ctx } = this;
     const res = await this.service.userEvent.delete(
       ctx.state.user.id,
-      +ctx.query.eventType,
-      +ctx.query.eventId,
+      +ctx.request.body.eventType,
+      +ctx.request.body.eventId,
     );
+    console.log(res);
     if (res === 1) {
       ctx.body = new SuccessResponse('ok');
     } else {

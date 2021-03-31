@@ -25,6 +25,20 @@ Page({
     }
   },
 
+  // 跳转页面中间检验
+  jumpPage(event) {
+    if (this.data.isLogin) {
+      wx.navigateTo({
+        url: event.target.dataset.url,
+      });
+    } else {
+      wx.showToast({
+        icon: 'none',
+        title: '请先登录！',
+      });
+    }
+  },
+
   // 注销
   handleLogOut() {
     wx.showModal({

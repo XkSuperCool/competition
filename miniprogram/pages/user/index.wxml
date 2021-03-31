@@ -7,15 +7,15 @@
   <open-data type='userNickName' wx:else></open-data>
 </view>
 
-<view class='operation'>
-  <view class='operation-item'>
+<view class='operation' bind:tap='jumpPage'>
+  <view class='operation-item' data-url='/pages/my-signup/index'>
     <text class='iconfont iconsign'></text>
     我的报名
   </view>
-  <navigator class='operation-item' url='/pages/team/index'>
+  <view class='operation-item' data-url='/pages/team/index'>
     <text class='iconfont icontubiao-'></text>
     我的团队
-  </navigator>
+  </view>
 </view>
 
 <button class='log-out' type='warn' bind:tap='handleLogOut' wx:if='{{isLogin}}'>

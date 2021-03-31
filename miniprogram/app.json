@@ -6,7 +6,8 @@
     "pages/map/index",
     "pages/search/index",
     "pages/event-list/index",
-    "pages/team/index"
+    "pages/team/index",
+    "pages/my-signup/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
