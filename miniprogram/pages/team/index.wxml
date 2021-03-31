@@ -1,9 +1,10 @@
-<tab
-  class='tab'
-  activeIndex='{{listType}}'
-  bind:change='handleChangeTab'
-  tabs='{{["全部", "加入的团队", "创建的团队"]}}'
-/>
+<view class='tab'>
+  <tab
+    activeIndex='{{listType}}'
+    bind:change='handleChangeTab'
+    tabs='{{["全部", "加入的团队", "创建的团队"]}}'
+  />
+</view>
 
 <view class='team' wx:for='{{teamList}}' wx:key='id'>
   <view class='team-logo'>
