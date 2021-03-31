@@ -12,11 +12,12 @@
   <banner data='{{banners}}' />
 </view>
 
-<view class='tab' bind:tap='handleToggleListType'>
-  <view class='{{listType === 0 ? "tab-active" : ""}} tab-item' data-type='0'>全部</view>
-  <view class='{{listType === 1 ? "tab-active" : ""}} tab-item' data-type='1'>个人赛</view>
-  <view class='{{listType === 2 ? "tab-active" : ""}} tab-item' data-type='2'>团队赛</view>
-</view>
+<tab
+  class='tab'
+  tabs='{{["全部", "个人赛", "团队赛"]}}'
+  active-index='{{listType}}'
+  bind:change='handleToggleListType'
+/>
 
 <view class='event-list'>
   <block wx:for='{{eventList}}' wx:key='id'>

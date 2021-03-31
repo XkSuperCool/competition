@@ -1,0 +1,28 @@
+<tab
+  class='tab'
+  activeIndex='{{listType}}'
+  bind:change='handleChangeTab'
+  tabs='{{["全部", "加入的团队", "创建的团队"]}}'
+/>
+
+<view class='team' wx:for='{{teamList}}' wx:key='id'>
+  <view class='team-logo'>
+    <image class='logo-image' src='https://gss0.baidu.com/70cFfyinKgQFm2e88IuM_a/forum/w=580/sign=4b62c335ec24b899de3c79305e061d59/74ceab4bd11373f0e15886aaa10f4bfbfbed0429.jpg' />
+  </view>
+  <view class='content'>
+    <view class='team-name'>天天向上</view>
+    <view class='team-slogan'>
+      good good study ，day day up
+    </view>
+    <view class='team-member'>
+      <view class='avatar {{index === 0 ? "leader" : ""}}' wx:for='{{item.members}}' wx:key='*this'>
+        <image class='avatar-image' src='https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic2.zhimg.com%2F50%2Fv2-dabd289dd21a5cf4967cb9b710cee36f_hd.jpg&refer=http%3A%2F%2Fpic2.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619676364&t=c9a54fb30ba177e848d316253c97cac9' />
+      </view>
+      <view class='counter'>... 共10人</view>
+    </view>
+  </view>
+</view>
+
+<view class='create' hover-class='active' hover-stay-time='100'>
+  <text class='iconfont iconicon-test'></text>
+</view>

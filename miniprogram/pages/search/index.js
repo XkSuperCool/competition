@@ -3,7 +3,7 @@ Page({
     history: [],
   },
 
-  onLoad: function() {
+  onShow: function() {
     wx.getStorage({
       key: 'search-history',
       success: ({ data }) => {

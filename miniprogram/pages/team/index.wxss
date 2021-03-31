@@ -1,0 +1,108 @@
+page {
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.tab {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.team {
+  height: 240rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+  background-size: 100% 240rpx;
+  margin: 20rpx 0;
+  background-image: url(https://i.picsum.photos/id/932/600/300.jpg?blur=5&hmac=ZDwuTXmPLNRpW3C6ZCNbZ3htozXveZfpzI2nRGT04BA);
+  background-size: cover;
+}
+
+.team-logo {
+  margin-right: 30rpx;
+}
+
+.team-logo .logo-image {
+  width: 120rpx;
+  height: 120rpx;
+  display: block;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.team-name {
+  color: #b6b6b6;
+  margin-bottom: 10rpx;
+}
+
+.team-slogan {
+  color: #b6b6b6;
+  font-size: 24rpx;
+}
+
+.team-member {
+  display: flex;
+  margin-top: 40rpx;
+}
+
+.team-member .avatar {
+  margin-right: 15rpx;
+  position: relative;
+}
+
+.team-member .avatar-image {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  border-radius: 50%;
+}
+
+.team-member .avatar.leader::after {
+  content: '';
+  position: absolute;
+  width: 30rpx;
+  height: 30rpx;
+  left: -17rpx;
+  top: -17rpx;
+  transform: rotate(-45deg);
+  background-image: url(data:image/png;base64,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);
+  background-size: 100% 100%;
+}
+
+.team-member .counter {
+  color: #b6b6b6;
+  font-size: 22rpx;
+  line-height: 1;
+  align-self: flex-end;
+}
+
+.create {
+  position: fixed;
+  width: 100rpx;
+  height: 100rpx;
+  right: 50rpx;
+  bottom: calc(env(safe-area-inset-bottom) + 40rpx);
+  border-radius: 50%;
+  box-shadow: 4rpx 4rpx 12rpx rgb(189, 188, 188);
+  background-color: #3ac035;
+}
+
+.create .iconfont {
+  color: #fff;
+  font-size: 50rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform .6s, box-show .6s;
+}
+
+.create.active {
+  background-color: #73eb6f;
+  transform: scale(.95);
+  box-shadow: none;
+}

@@ -42,39 +42,9 @@
 }
 
 .tab {
-  height: 80rpx;
-  background-color: #fff;
   position: sticky;
   top: 80rpx;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  padding: 0 40rpx;
-  box-sizing: border-box;
-}
-
-.tab .tab-item {
-  flex: 1;
-  height: 80rpx;
-  line-height: 80rpx;
-  font-size: 28rpx;
-  text-align: center;
-}
-
-.tab-active {
-  color: #3ac035;
-  position: relative;
-}
-
-.tab-active::after {
-  content: '';
-  width: 50%;
-  height: 4rpx;
-  background-color: #3ac035;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  z-index: 999;
 }
 
 .event-list {

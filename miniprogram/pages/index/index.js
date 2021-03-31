@@ -37,10 +37,10 @@ Page({
   },
 
   // 切换 listType
-  handleToggleListType(data) {
-    if (data.target.dataset.type !== void(0)) {
+  handleToggleListType(event) {
+    if (event.detail !== void(0)) {
       this.setData({
-        listType: +data.target.dataset.type,
+        listType: +event.detail,
       });
       // 数据重置
       current = 1;

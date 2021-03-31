@@ -47,7 +47,7 @@ Page({
           wx.showModal({
             title: '您尚未开启定位权限，需要开启定位权限后才能使用路径规划功能',
             confirmText: '去开启',
-            success({ confirm }) {
+            success: ({ confirm }) => {
               if (confirm) {
                 wx.openSetting({
                   success: (res) => {

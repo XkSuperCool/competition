@@ -1,6 +1,6 @@
 <view class='user-info'>
   <view class='avatar'>
-    <image src='http://192.168.137.1:7001/public/avatar.png'  wx:if='{{!isLogin}}'/>
+    <image src='../../assets/images/avatar.png'  wx:if='{{!isLogin}}'/>
     <open-data type='userAvatarUrl' wx:else></open-data>
   </view>
   <view bind:tap='userLogin' wx:if='{{!isLogin}}'>登录</view>
@@ -12,10 +12,10 @@
     <text class='iconfont iconsign'></text>
     我的报名
   </view>
-  <view class='operation-item'>
+  <navigator class='operation-item' url='/pages/team/index'>
     <text class='iconfont icontubiao-'></text>
     我的团队
-  </view>
+  </navigator>
 </view>
 
 <button class='log-out' type='warn' bind:tap='handleLogOut' wx:if='{{isLogin}}'>

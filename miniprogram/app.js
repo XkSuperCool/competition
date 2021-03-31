@@ -31,6 +31,7 @@ App({
               resolve(true);
               wx.setStorageSync('token', token);
               this.globalData.isLogin = true;
+              wx.hideLoading();
               wx.showToast({
                 title: '登录成功',
                 icon: 'success',
@@ -38,13 +39,12 @@ App({
             }
           } catch {
             this.globalData.isLogin = false;
+            wx.hideLoading();
             wx.showToast({
               title: '登录失败',
               icon: null,
             });
             resolve(false);
-          } finally {
-            wx.hideLoading();
           }
         },
         fail: () => {
