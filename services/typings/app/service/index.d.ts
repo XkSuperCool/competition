@@ -10,6 +10,7 @@ import ExportCompetitionEvent from '../../../app/service/competitionEvent';
 import ExportTeam from '../../../app/service/team';
 import ExportUser from '../../../app/service/user';
 import ExportUserEvent from '../../../app/service/userEvent';
+import ExportUserTeam from '../../../app/service/userTeam';
 
 declare module 'egg' {
   interface IService {
@@ -17,5 +18,6 @@ declare module 'egg' {
     team: AutoInstanceType<typeof ExportTeam>;
     user: AutoInstanceType<typeof ExportUser>;
     userEvent: AutoInstanceType<typeof ExportUserEvent>;
+    userTeam: AutoInstanceType<typeof ExportUserTeam>;
   }
 }

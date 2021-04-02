@@ -1,7 +1,7 @@
 import { Application } from 'egg';
-import UserEventSchema from '../schema/userEvent';
-import UserSchema from '../schema/user';
-import EventTypeSchema from '../schema/eventType';
+const UserEventSchema = require('../schema/userEvent');
+const UserSchema = require('../schema/user');
+const EventTypeSchema = require('../schema/eventType');
 
 export interface CompetitionEventItem {
   event_name: string;
@@ -30,11 +30,11 @@ const CompetitionEventModel = (app: Application) => {
   const CompetitionEvent = app.model.define('competitionEvent', CompetitionEventSchema);
 
   // 多对多关系
-  const UserEvent = app.model.define('userEvent', UserEventSchema);
-  const User = app.model.define('user', UserSchema);
+  const UserEvent = app.model.define('userEvent', UserEventSchema(app));
+  const User = app.model.define('user', UserSchema(app));
   CompetitionEvent.belongsToMany(User, { through: UserEvent, foreignKey: 'event_id' });
   // 一对多关系
-  const EventType = app.model.define('user', EventTypeSchema);
+  const EventType = app.model.define('user', EventTypeSchema(app));
   EventType.hasMany(CompetitionEvent, { foreignKey: 'event_type' });
 
   return class extends CompetitionEvent {

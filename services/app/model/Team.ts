@@ -1,5 +1,4 @@
 import { Application } from 'egg';
-import TeamSchema from '../schema/team';
 
 export interface TeamInstance {
   name: string;
@@ -9,20 +8,59 @@ export interface TeamInstance {
   leader: number;
 }
 
+export type TeamQueryType = 'all' | 'join' | 'create';
+
 const TeamModel = (app: Application) => {
+  const TeamSchema = require('../schema/team')(app);
   const Team = app.model.define('team', TeamSchema);
 
   return class extends Team {
     static associate() {
-      //
+      app.model.User.hasMany(Team, { foreignKey: 'leader' });
+      Team.belongsToMany(app.model.User, { through: app.model.UserTeam, foreignKey: 'team_id' });
+      app.model.User.belongsToMany(Team, { through: app.model.UserTeam, foreignKey: 'user_id' });
     }
 
     /**
-     * 根据 id 获取一条团队数据
-     * @param id 团队 id
+     * 查询报名的团队信息，根据 type 可以获取到 全部、加入的团队、创建的团队
+     * @param userID 用户 id
+     * @param type 查询类型
      */
-    static async queryOneById(id: number) {
-      return Team.findByPk(id);
+    static async query(userID: number, type: TeamQueryType = 'all') {
+      const teamWhere: {[key: string]: any} = {};
+      if (type === 'join') {
+        teamWhere.leader = {
+          [app.Sequelize.Op.ne]: userID,
+        };
+      } else if (type === 'create') {
+        teamWhere.leader = {
+          [app.Sequelize.Op.eq]: userID,
+        };
+      }
+      const { count, rows } = await Team.findAndCountAll({
+        include: [
+          {
+            model: app.model.User,
+            attributes: [
+              'id', 'username', 'nickname',
+            ],
+            through: {
+              attributes: [],
+              where: {
+                user_id: userID,
+              },
+            },
+          },
+        ],
+        attributes: {
+          exclude: [ 'createdAt', 'updatedAt' ],
+        },
+        where: teamWhere,
+      });
+      return {
+        total: count,
+        list: rows,
+      };
     }
 
     /**
@@ -31,6 +69,18 @@ const TeamModel = (app: Application) => {
      */
     static async queryTeamWithMemberById(id: number) {
       return Team.findByPk(id, {
+        include: [
+          {
+            model: app.model.User,
+            attributes: [ 'id', 'username', 'nickname' ],
+            through: {
+              attributes: [],
+            },
+          },
+        ],
+        attributes: {
+          exclude: [ 'createdAt', 'updatedAt' ],
+        },
       });
     }
 

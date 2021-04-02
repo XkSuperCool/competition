@@ -1,6 +1,4 @@
 import { Application } from 'egg';
-import UserEventSchema from '../schema/userEvent';
-import EventTypeSchema from '../schema/eventType';
 
 export interface UserEventInstance {
   user_id: number;
@@ -9,6 +7,8 @@ export interface UserEventInstance {
 }
 
 const UserEventModel = (app: Application) => {
+  const UserEventSchema = require('../schema/userEvent')(app);
+  const EventTypeSchema = require('../schema/eventType')(app);
   const UserEvent = app.model.define('userEvent', UserEventSchema);
   const EventType = app.model.define('eventType', EventTypeSchema);
 

@@ -1,8 +1,8 @@
 import { Service } from 'egg';
-import type { TeamInstance } from '../model/Team';
+import type { TeamInstance, TeamQueryType } from '../model/Team';
 
 export default class TeamService extends Service {
-  createTeam(data: TeamInstance) {
+  createTeam(data: TeamInstance): Promise<any> {
     const { ctx } = this;
     return ctx.model.Team.save(data);
   }
@@ -15,5 +15,15 @@ export default class TeamService extends Service {
   deleteTeam(leader: number, teamId: number) {
     const { ctx } = this;
     return ctx.model.Team.deleteTeam(leader, teamId);
+  }
+
+  queryUserTeam(userId: number, type?: TeamQueryType) {
+    const { ctx } = this;
+    return ctx.model.Team.query(userId, type);
+  }
+
+  queryTeamDetails(id: number) {
+    const { ctx } = this;
+    return ctx.model.Team.queryTeamWithMemberById(id);
   }
 }

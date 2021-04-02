@@ -1,5 +1,5 @@
 import { Application } from 'egg';
-import UserEventSchema from '../schema/UserEvent';
+const UserEventSchema = require('../schema/UserEvent');
 
 export interface UserInstance {
   username: string;
@@ -18,7 +18,7 @@ const UserModel = (app: Application) => {
 
   return class extends User {
     static associate() {
-      const UserEvent = app.model.define('user', UserEventSchema);
+      const UserEvent = app.model.define('user', UserEventSchema(app));
       User.belongsToMany(app.model.CompetitionEvent, { through: UserEvent, foreignKey: 'user_id' });
     }
 
