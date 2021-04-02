@@ -64,6 +64,14 @@ const TeamModel = (app: Application) => {
     }
 
     /**
+     * 根据 id 获取一条数据
+     * @param id 团队 id
+     */
+    static async queryOneData(id: number) {
+      return await Team.findByPk(id);
+    }
+
+    /**
      * 根据团队 id , 获取团队及其成员数据
      * @param id 团队 id
      */

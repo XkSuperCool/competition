@@ -4,6 +4,7 @@ export interface UserEventInstance {
   user_id: number;
   event_id: number;
   event_type: number;
+  team_id?: number;
 }
 
 const UserEventModel = (app: Application) => {
@@ -98,6 +99,22 @@ const UserEventModel = (app: Application) => {
           user_id: userID,
           event_id: eventID,
           event_type: eventType,
+        },
+      });
+    }
+
+    /**
+     * 删除所有 teamId 相等的数据
+     * @param eventID 赛事 id
+     * @param eventType 赛事类型
+     * @param teamID 团队 id
+     */
+    static async deleteTeamData(eventID: number, eventType: number, teamID: number) {
+      return await UserEvent.destroy({
+        where: {
+          event_id: eventID,
+          event_type: eventType,
+          team_id: teamID,
         },
       });
     }

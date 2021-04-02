@@ -12,6 +12,6 @@ export default (app: Application) => {
   // @ts-ignore
   router.post('/api/userEventChecked', jwt, controller.userEvent.userEventChecked);
   // @ts-ignore
-  router.post('/api/cancel/signUp', jwt, controller.userEvent.cancelSignUp);
+  router.post('/api/cancel/signUp', controller.userEvent.cancelSignUp);
   router.post('/api/wxLogin', controller.user.wxLogin);
 };
