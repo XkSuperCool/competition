@@ -3,7 +3,6 @@ import { UserEventInstance } from '../model/UserEvent';
 
 export default class UserEventClass extends Service {
   create(data: UserEventInstance) {
-    console.log(data.event_type, data.team_id);
     if (+data.event_type === 2 && !data.team_id) {
       return this.ctx.throw('团队赛报名，缺少团队 id ！');
     }

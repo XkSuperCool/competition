@@ -17,7 +17,6 @@ export default class UserEventController extends Controller {
     const body = ctx.request.body as UserEventInstance;
     // 判断是否已经报名过
     const checked = await service.userEvent.checkedUserIsSignUpEvent(ctx.state.user.id, body.event_id);
-    console.log(checked);
     if (
       (+body.event_type === 1 && checked === 'alone') ||
       (+body.event_type === 2 && checked === 'team') ||
